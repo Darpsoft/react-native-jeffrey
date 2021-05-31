@@ -2,6 +2,8 @@
 
 _Proyecto pequeño con inicio de sesión, con datos persistente, se puede visualizar una lista de reservaciones, también posee filtros para los datos obtenidos mediante el endpoint proporcionado, tiene validación de formulario, flatlist implementado para actualación de datos con RefreshControl, también se puede cerrar sesión._
 
+_Se implementó la librería react-final-form y react-native-pdf._ 
+
 
 ## Demo de la aplicación 📌
 _Si deseas ver la aplicación, puedes ingresar al siguiente link_
@@ -69,6 +71,8 @@ _Liberías y herramientas utilizadas para la construcción del proyecto_
 * [redux - Verion: 4.0.5](https://www.npmjs.com/package/redux) -Manejador de estado
 * [redux-saga - Verion: 1.1.3](https://www.npmjs.com/package/redux-saga) - Middleware para hacer peticiones
 * [babel-plugin-module-resolver](https://www.npmjs.com/package/babel-plugin-module-resolver) - Para trabajar de forma ordenada con las rutas o indexados
+* [react-native-pdf](https://www.npmjs.com/package/react-native-pdf) - Para poder visualizar PDF (NEW)
+* [react-final-form](https://www.npmjs.com/package/react-final-form) - Validación de Formularios (NEW)
 
 ## Autores ✒️
 
