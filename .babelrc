@@ -1,0 +1,19 @@
+{
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "@components": "./src/components",
+          "@utils": "./src/utils",
+          "@services": "./src/services",
+          "@redux": "./src/redux",
+          "@screens": "./src/screens",
+          "@database": "./src/database",
+          "@assets": "./src/assets"
+        }
+      }
+    ]
+  ]
+}

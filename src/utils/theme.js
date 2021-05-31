@@ -1,0 +1,26 @@
+export default {
+  COLORS: {
+    PRIMARY: '#25D366',
+    SECONDARY: '#9FA5C0',
+    TITLE: '#2E3E5C',
+    GOOGLE: '#FF5842',
+    FACEBOOK: '#4267B2',
+    WHITE: '#FFFFFF',
+    BLACK: '#010400',
+    DARKGREY: '#30332E',
+    LIGHTGREY: '#EDF1F9',
+    GREY: '#B5BBC9',
+    ERROR: '#F5365C',
+    SUCCESS: '#2DCE89',
+    WARNING: '#FB6340',
+    BLUEPRIMARY: '#2E3E5C',
+    BLUESECONDARY: '#3E5481',
+    GREYPRIMARY: '#9FA5C0',
+    GREYBORDER: '#D0DBEA',
+    RED: '#DA0000',
+    GREEN: '#1FCC79',
+  },
+  FONT: {
+    FAMILY: 'TitilliumWeb-Regular.ttf',
+  },
+};
