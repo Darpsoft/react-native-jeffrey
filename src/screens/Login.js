@@ -21,9 +21,9 @@ const getInputsForm = () => {
     {
       status: true,
       label: "Contraseña",
-      placeholder: "Ingrese una contraseña",
+      placeholder: "La contraseña es 1234",
       name: "password",
-      defaultValue: "1234",
+      defaultValue: "",
       secureTextEntry: true,
       // rules: { required: { value: true, message: "Debe escribir una contraseña" } },
     },
