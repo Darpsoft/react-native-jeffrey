@@ -10,7 +10,7 @@ _Si deseas ver la aplicación, puedes ingresar al siguiente link_
 
 _La aplicación ya posee habilitado **ProGuard** y **Hermes** para un mejor performance_
 
-**DEMO** -> [**APK - TutenApp**](https://mega.nz/file/D5YkhJ4I#b28-wiys10WR_nx6QJBq6oYE7Behu4ly1svMfWAgR0A)
+**DEMO** -> [**APK - TutenApp**](https://mega.nz/file/HJ5DyK6Y#rwI0T3bJn6oXWs93wsesknrwX5x-YL5UDZDQ1U3MB6o)
 
 ## Comenzando 🚀
 
