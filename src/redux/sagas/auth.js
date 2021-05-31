@@ -19,7 +19,7 @@ export function* Login({ payload: { email, password } }) {
     const userTypeName = "ADMIN";
 
     // En este caso solo se utilizará en token {sessionTokenBck}
-    yield all([put(loginSuccess({ tokenUser: requestLogin.sessionTokenBck, dataUser: { ...requestLogin, userTypeName, app: "APP_BCK" } }))]);
+    yield put(loginSuccess({ tokenUser: requestLogin.sessionTokenBck, dataUser: { ...requestLogin, userTypeName, app: "APP_BCK" } }));
   } catch (err) {
     yield showMessageError(err);
   } finally {
@@ -31,10 +31,10 @@ export function* Register() {
   const storage = yield select((state) => state);
   try {
     yield put(showLoader());
-    yield all([put(hideLoader())]);
   } catch (err) {
-    yield put(hideLoader());
     yield showMessageError(err);
+  } finally {
+    yield put(hideLoader());
   }
 }
 

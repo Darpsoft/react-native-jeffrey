@@ -2,13 +2,13 @@ import React, { useMemo } from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { Button, TextInput, useTheme } from "react-native-paper";
 import { useStyleUniversal } from "@assets/styles/styles";
-import { Wrapper, Text, ControllerTextInput } from "@components/index";
-import { useForm } from "react-hook-form";
+import { Wrapper, Text } from "@components/index";
 import { useDispatch } from "react-redux";
 import { loginStart } from "@redux/actions";
 import { useSelector } from "react-redux";
+import { Form, Field } from "react-final-form";
 
-const getInputsForm = ({ control }) => {
+const getInputsForm = () => {
   return [
     {
       status: true,
@@ -16,7 +16,7 @@ const getInputsForm = ({ control }) => {
       placeholder: "Ingrese un correo electronico",
       name: "email",
       defaultValue: "testapis@tuten.cl",
-      rules: { required: { value: true, message: "Debes escribir un número telefonico" } },
+      // rules: { required: { value: true, message: "Debes escribir un número telefonico" } },
     },
     {
       status: true,
@@ -25,17 +25,27 @@ const getInputsForm = ({ control }) => {
       name: "password",
       defaultValue: "1234",
       secureTextEntry: true,
-      rules: { required: { value: true, message: "Debe escribir una contraseña" } },
+      // rules: { required: { value: true, message: "Debe escribir una contraseña" } },
     },
   ];
+};
+
+const validate = (values) => {
+  const errors = {};
+  if (!values.email) {
+    errors.email = "Debes escribir su correo electronico";
+  }
+  if (!values.password) {
+    errors.password = "Debe escribir una contraseña";
+  }
+  return errors;
 };
 
 const Login = () => {
   const { settings } = useSelector((store) => store);
   const theme = useTheme();
   const styles = { ...useStyle(theme), ...useStyleUniversal(theme) };
-  const { control, handleSubmit, errors } = useForm();
-  const inputsForm = useMemo(() => getInputsForm({ control }), []);
+  const inputsForm = useMemo(() => getInputsForm(), []);
   const dispatch = useDispatch();
 
   const handleRegister = (values) => {
@@ -49,23 +59,33 @@ const Login = () => {
           <Image source={require("../assets/images/logo-tutenlabs.png")} style={{ resizeMode: "cover" }} />
           <Text style={styles.title}>Bienvenido</Text>
         </View>
-        {inputsForm
-          .filter((input) => input.status)
-          .map((input, index) => (
-            <ControllerTextInput
-              key={index}
-              {...input}
-              errors={errors}
-              control={control}
-              render={({ onChange, onBlur, value }) => (
-                <TextInput {...input} style={styles.input} onBlur={onBlur} onChangeText={(value) => onChange(value)} value={value} error={errors[input.name]} />
-              )}
-            />
-          ))}
-
-        <Button mode="outlined" loading={settings.loader} disabled={settings.loader} onPress={handleSubmit(handleRegister)}>
-          Iniciar Sesión
-        </Button>
+        <Form
+          onSubmit={handleRegister}
+          validate={validate}
+          render={({ handleSubmit }) => (
+            <>
+              {inputsForm
+                .filter((input) => input.status)
+                .map((inputForm, key) => (
+                  <Field
+                    {...inputForm}
+                    key={key}
+                    render={({ input, meta }) => {
+                      return (
+                        <>
+                          <TextInput {...inputForm} {...input} style={styles.input} />
+                          {meta.error && meta.touched && <Text>{meta.error}</Text>}
+                        </>
+                      );
+                    }}
+                  />
+                ))}
+              <Button mode="outlined" style={styles.button} loading={settings.loader} disabled={settings.loader} onPress={handleSubmit}>
+                Iniciar Sesión
+              </Button>
+            </>
+          )}
+        />
       </View>
     </Wrapper>
   );
@@ -75,6 +95,12 @@ const useStyle = (theme) =>
   StyleSheet.create({
     title: {
       marginVertical: 16,
+    },
+    input: {
+      marginVertical: 8,
+    },
+    button: {
+      marginVertical: 8,
     },
   });
 
