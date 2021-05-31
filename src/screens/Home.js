@@ -9,11 +9,16 @@ import ListBooking from "@components/ListBooking";
 import { customUseReducer } from "@utils/customHooks";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { set } from "lodash";
+import PdfModal from "@components/PdfModal";
 
-const FilterComponent = ({ state, dispatchComponent }) => {
+// En este caso no hace falta pasarlo a una carpeta aparte porque no se va a reutilizar
+// Tampoco posee su propio state, basicamente está utilizando el del componente padre
+
+const FilterComponent = ({ state = {}, dispatchComponent = () => {} }) => {
   const theme = useTheme();
   const styles = { ...useStyle(theme), ...useStyleUniversal(theme) };
 
+  // Sort order
   const handleSort = (field) => {
     const sort = !state._sort[field];
     dispatchComponent((state) => {
@@ -83,6 +88,7 @@ const Home = () => {
   const [state, dispatchComponent] = customUseReducer(initialState);
   const dispatch = useDispatch();
   const { home } = useSelector((store) => store);
+  const source = { uri: "http://samples.leanpub.com/thereactnativebook-sample.pdf", cache: true };
 
   useEffect(() => {
     initialRequest();
@@ -123,6 +129,7 @@ const Home = () => {
         value={state.textSearch}
       />
       <FilterComponent state={state} dispatchComponent={dispatchComponent} />
+      <PdfModal source={source} />
       <FlatList
         showsVerticalScrollIndicator={false}
         refreshControl={<RefreshControl colors={["#000"]} refreshing={state.loading} onRefresh={initialRequest} />}
